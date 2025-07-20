@@ -31,6 +31,9 @@ class HstsMvsProcess:
 
         images = self._extract_images(processed_bytes)
 
+        if len(images) == 0:
+            raise HTTPException(status_code=404, detail="Не знайдено зображення.")
+
         encoded_image = base64.b64encode(BytesIO(images[0]).getvalue()).decode("utf-8")
         encoded_pdf = base64.b64encode(processed_file.getvalue()).decode("utf-8")
 
@@ -52,7 +55,7 @@ class HstsMvsProcess:
 
             return image
         except Exception as e:
-            raise HTTPException(f"Помилка при витягуванні зображень: {str(e)}")
+            raise HTTPException(status_code=400, detail=f"Помилка при витягуванні зображень: {str(e)}")
         finally:
             if doc:
                 doc.close()
