@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.api.hsts_mvs_process import router as hsts_mvs_process_router
+from src.api.dmsu_process import router as hsts_mvs_process_router
 
 main_router = APIRouter()
 

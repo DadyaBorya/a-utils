@@ -13,7 +13,7 @@ from fastapi import UploadFile, HTTPException
 from src.utils.decoder import Decoder
 
 
-class HstsMvsProcess:
+class DmsuProcess:
     async def process(self, file: UploadFile):
         content = await file.read()
 
